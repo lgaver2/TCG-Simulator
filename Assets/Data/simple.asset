@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d82a6c9e9104071b9c868bc96e66468, type: 3}
+  m_Name: simple
+  m_EditorClassIdentifier: Assembly-CSharp::CardData
+  Sprite: {fileID: 21300000, guid: 2cb10ef59ca36d8c1961fa5221e183d4, type: 3}
+  Name: Dragon
+  Cost: 3
+  Effect: Nothing
