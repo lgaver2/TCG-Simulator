@@ -10,12 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d82a6c9e9104071b9c868bc96e66468, type: 3}
-  m_Name: simple
+  m_Name: Goyoku
   m_EditorClassIdentifier: Assembly-CSharp::CardData
-  Sprite: {fileID: 21300000, guid: 2cb10ef59ca36d8c1961fa5221e183d4, type: 3}
-  Name: Dragon
-  Cost: 3
-  Effects: []
+  Sprite: {fileID: 0}
+  Name: Goyoku
+  Cost: 0
+  Effects:
+  - rid: 833443086331543639
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 833443086331543639
+      type: {class: EffectDraw, ns: , asm: Assembly-CSharp}
+      data:
+        drawAmount: 2

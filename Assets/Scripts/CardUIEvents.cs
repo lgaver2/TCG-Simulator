@@ -68,7 +68,8 @@ public class CardUIEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             if (obj.TryGetComponent(out IDropArea dropArea))
             {
-                dropArea.OnCardDrop(cardView);
+                PlayCardGA playCardGA = new(cardView.GetCard());
+                ActionSystem.Instance.Perform(playCardGA).Forget();
                 return;
             }
         }
@@ -102,7 +103,7 @@ public class CardUIEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         //cardView.GetWrapper().SetActive(false);
         transform.localScale = new(1.2f, 1.2f, 1.2f);
-        CardViewHoverSystem.Instance.Show(cardView.GetCCrd());
+        CardViewHoverSystem.Instance.Show(cardView.GetCard());
     }
 
     private void Hide()

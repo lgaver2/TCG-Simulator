@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface EffectPlain
 {
-    public void Perform();
+    public GameAction GetGameAction();
 }

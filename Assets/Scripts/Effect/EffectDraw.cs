@@ -4,10 +4,10 @@ using UnityEngine;
 [Serializable]
 public sealed class EffectDraw : EffectPlain
 {
-    public int amount;
-
-    public void Perform()
+    [SerializeField] private int drawAmount;
+    public GameAction GetGameAction()
     {
-       Debug.Log("draw" + amount); 
+        DrawCardGA drawCardGA = new(drawAmount);
+        return drawCardGA;
     }
 }

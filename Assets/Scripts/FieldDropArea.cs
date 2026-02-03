@@ -18,6 +18,5 @@ public class FieldDropArea : MonoBehaviour, IDropArea
     public void OnCardDrop(CardView cardView)
     {
         cardView.transform.position = transform.position;
-        cardView.PerformEffect();
     }
 }

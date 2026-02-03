@@ -17,47 +17,23 @@ public class CardView : MonoBehaviour
     [SerializeField] private TMP_Text cardCost;
     [SerializeField] private TMP_Text effect;
 
-
-    [SerializeReference] private List<EffectPlain> effects;
-
-
-    private int _layerOrder;
-
     public Card card { get; private set; }
 
 
     public void SetCard(Card card)
     {
         this.card = card;
-        cardImage.sprite = card.GetSprite();
-        cardName.text = card.GetName();
+        cardImage.sprite = card.Sprite;
+        cardName.text = card.Name;
         cardCost.text = card.Cost.ToString();
-        effect.text = card.Effect;
     }
 
-    public int LayerOrder
-    {
-        get { return _layerOrder; }
-        set
-        {
-            cardImage.sortingOrder = value;
-            _layerOrder = value;
-        }
-    }
-
-    public void PerformEffect()
-    {
-        foreach (var effect in effects)
-        {
-            effect.Perform();
-        }
-    }
     public GameObject GetWrapper()
     {
         return wrapper;
     }
     
-    public Card GetCCrd()
+    public Card GetCard()
     {
         return card;
     }
