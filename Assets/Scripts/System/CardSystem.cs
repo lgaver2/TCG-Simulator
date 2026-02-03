@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -16,16 +17,21 @@ public class CardSystem : Singleton<CardSystem>
    private void OnEnable()
    {
       ActionSystem.AttachPerformer<DrawCardGA>(DrawCardsPerformer);
-      for (int i = 0; i < 50; i++)
-      {
-         deck.Add(new Card(cardData));
-      }
+      
       ActionSystem.SubscribeReaction<OpponentTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
    }
 
    private void OnDisable()
    {
       ActionSystem.DetachPerformer<DrawCardGA>();
+   }
+
+   public void Setup(List<CardData> deckList)
+   {
+      foreach (var cardData in deckList)
+      {
+         deck.Add(new Card(cardData));
+      }
    }
 
 
@@ -47,6 +53,8 @@ public class CardSystem : Singleton<CardSystem>
    private async UniTask DrawCard()
    {
       Card card = deck.Draw();
+      if (card == null)
+         return;
       hand.Add(card);
       CardView cardView = CardViewCreator.Instance.CreateCardView(deckPosition.position, deckPosition.rotation, card);
       await handManager.AddHandCard(cardView);
