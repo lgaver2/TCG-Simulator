@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   Sprite: {fileID: 0}
   Name: Goyoku
-  Cost: 0
+  Cost: 1
   Effects:
   - rid: 833443086331543639
   references:

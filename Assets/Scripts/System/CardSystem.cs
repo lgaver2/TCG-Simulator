@@ -51,6 +51,8 @@ public class CardSystem : Singleton<CardSystem>
    {
       hand.Remove(playCardGA.Card);
       CardView cardView = handManager.RemoveCard(playCardGA.Card);
+      SpendManaGA spendManaGA = new SpendManaGA(playCardGA.Card.Cost);
+      ActionSystem.Instance.AddAction(spendManaGA);
       await DiscardCard(cardView);
       foreach (var effect in playCardGA.Card.Effects)
       {
