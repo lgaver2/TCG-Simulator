@@ -21,20 +21,21 @@ MonoBehaviour:
   StrikePoint: 0
   CardType: 2
   Effects:
-  - rid: 833443121980768507
+  - rid: 833443126503538779
   references:
     version: 2
     RefIds:
-    - rid: 833443121980768507
-      type: {class: TargetEffect, ns: , asm: Assembly-CSharp}
+    - rid: 833443126503538779
+      type: {class: EffectContainer, ns: , asm: Assembly-CSharp}
       data:
         effect:
-          rid: 833443121980768510
+          rid: 833443126503538781
         targetMode:
-          rid: 833443121980768508
-    - rid: 833443121980768508
-      type: {class: TargetAllBattelZone, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 833443121980768510
+          rid: 833443126503538782
+        isManualTarget: 0
+    - rid: 833443126503538781
       type: {class: EffectShowMonster, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 833443126503538782
+      type: {class: TargetAllBattelZone, ns: , asm: Assembly-CSharp}
       data: 

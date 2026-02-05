@@ -22,4 +22,11 @@ namespace  CardEnum
         Player,
         Monster,
     }
+
+    public enum TargetModeEnum
+    {
+        None,
+        Manual,
+        Auto
+    }
 }

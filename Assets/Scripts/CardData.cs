@@ -18,5 +18,5 @@ public class CardData : ScriptableObject
     
     public CardType CardType;
     [SerializeReference]
-    public List<TargetEffect> Effects;
+    public List<EffectContainer> Effects;
 }

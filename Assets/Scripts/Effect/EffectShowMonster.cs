@@ -12,6 +12,7 @@ public class EffectShowMonster : Effect
             if (target is CardMonster targetMonster)
             {
                 targetMonster.AttackPoint += 1;
+                targetMonster.UpdateUI();
             }
         }
 

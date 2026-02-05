@@ -10,33 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d82a6c9e9104071b9c868bc96e66468, type: 3}
-  m_Name: Goyoku
+  m_Name: BoostOne
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   Sprite: {fileID: 0}
-  Name: Goyoku
-  Cost: 1
-  Description: Draw two cards
+  Name: Boost
+  Cost: 0
+  Description: target Monster ATK +1
   AttackPoint: 0
   DefensePoint: 0
   StrikePoint: 0
   CardType: 2
   Effects:
-  - rid: 833443126503538776
+  - rid: 833443126503538783
   references:
     version: 2
     RefIds:
-    - rid: 833443126503538776
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 833443126503538783
       type: {class: EffectContainer, ns: , asm: Assembly-CSharp}
       data:
         effect:
-          rid: 833443126503538777
+          rid: 833443126503538784
         targetMode:
-          rid: 833443126503538778
-        isManualTarget: 0
-    - rid: 833443126503538777
-      type: {class: EffectDraw, ns: , asm: Assembly-CSharp}
-      data:
-        drawAmount: 2
-    - rid: 833443126503538778
-      type: {class: NoTM, ns: , asm: Assembly-CSharp}
+          rid: -2
+        isManualTarget: 1
+    - rid: 833443126503538784
+      type: {class: EffectShowMonster, ns: , asm: Assembly-CSharp}
       data: 

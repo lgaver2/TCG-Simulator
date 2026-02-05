@@ -796,6 +796,7 @@ Transform:
   - {fileID: 889176650}
   - {fileID: 1450687951}
   - {fileID: 1134159769}
+  - {fileID: 851870199}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &496992475
@@ -1489,7 +1490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &851870199
 Transform:
   m_ObjectHideFlags: 0
@@ -1498,14 +1499,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851870198}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 886863089}
   - {fileID: 935761664}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 496992474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &851870200
 MonoBehaviour:
@@ -2073,6 +2074,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Alchemy::Alchemy.Hierarchy.HierarchyHeader
   hierarchyObjectMode: 0
+--- !u!1 &1175478190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1175478192}
+  - component: {fileID: 1175478191}
+  m_Layer: 0
+  m_Name: MouseUtils
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1175478191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175478190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1b02f9afe84a05e3b1489bced737219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MouseUtils
+  mainCamera: {fileID: 330585545}
+--- !u!4 &1175478192
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1175478190}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47908, y: 0.76451, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1250160993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,13 +2828,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   deckList:
-  - {fileID: 11400000, guid: aea2cd18c31cb44adb14a605e34efe61, type: 2}
+  - {fileID: 11400000, guid: 5025d298c5b1ed872860114fb1f68051, type: 2}
   - {fileID: 11400000, guid: aea2cd18c31cb44adb14a605e34efe61, type: 2}
   - {fileID: 11400000, guid: 9412f4bebe3c97e7893b00b33551788f, type: 2}
   - {fileID: 11400000, guid: aea2cd18c31cb44adb14a605e34efe61, type: 2}
   - {fileID: 11400000, guid: aea2cd18c31cb44adb14a605e34efe61, type: 2}
   - {fileID: 11400000, guid: 7db79b281a4b053c2865716c5a28a56b, type: 2}
-  - {fileID: 11400000, guid: aea2cd18c31cb44adb14a605e34efe61, type: 2}
+  - {fileID: 11400000, guid: 5025d298c5b1ed872860114fb1f68051, type: 2}
   - {fileID: 11400000, guid: 9412f4bebe3c97e7893b00b33551788f, type: 2}
   - {fileID: 11400000, guid: aea2cd18c31cb44adb14a605e34efe61, type: 2}
   - {fileID: 11400000, guid: aea2cd18c31cb44adb14a605e34efe61, type: 2}
@@ -2931,7 +2977,7 @@ GameObject:
   - component: {fileID: 1867364390}
   - component: {fileID: 1867364391}
   m_Layer: 0
-  m_Name: ArrowSys
+  m_Name: ManualTargetSys
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2964,10 +3010,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5541262f47e7f8eb7b16381bbd02765a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ManualTarget
-  arrowView: {fileID: 0}
+  arrowView: {fileID: 851870200}
+  mainCamera: {fileID: 330585545}
   targetLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  arrowPrefab: {fileID: 7863362958598646891, guid: 2d97d8d6dbe1a124e9f6c8650407b090, type: 3}
 --- !u!1 &1911636599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,10 +3103,10 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 535587445}
+  - {fileID: 1175478192}
   - {fileID: 655121910}
   - {fileID: 496992474}
   - {fileID: 826545491}
   - {fileID: 433100767}
   - {fileID: 1302681461}
   - {fileID: 762196070}
-  - {fileID: 851870199}

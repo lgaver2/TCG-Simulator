@@ -10,6 +10,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
 
 public class CardView : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class CardView : MonoBehaviour
     public void SetCard(Card card)
     {
         this.Card = card;
+        UpateUI(card);
+        card.onUpdateUI += UpateUI;
+    }
+
+    private void UpateUI(Card card)
+    {
         cardImage.sprite = card.Sprite;
         cardName.text = card.Name;
         cardCost.text = card.Cost.ToString();
@@ -44,6 +51,6 @@ public class CardView : MonoBehaviour
             attack.text = monsterCard.AttackPoint.ToString();
             defense.text = monsterCard.DefensePoint.ToString();
             strike.text = monsterCard.StrikePoint.ToString();
-        }
+        } 
     }
 }

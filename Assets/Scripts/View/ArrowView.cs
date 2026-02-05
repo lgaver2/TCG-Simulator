@@ -18,7 +18,7 @@ public class ArrowView : MonoBehaviour
 
     private void Update()
     {
-        Vector3 endPosition = GetMouseWorldPosition();
+        Vector3 endPosition = MouseUtils.Instance.GetMouseWorldPosition();
         
         Vector3 direction = (endPosition - startPosition).normalized;
 
@@ -29,18 +29,4 @@ public class ArrowView : MonoBehaviour
         lineRenderer.SetPosition(1, endPosition - direction * 0.25f);
     }
 
-    public Vector3 GetMouseWorldPosition()
-    {
-        if (Mouse.current == null) return Vector3.zero;
-
-        Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
-
-        float zDistance = Mathf.Abs(mainCamera.transform.position.z);
-
-        Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, zDistance));
-
-        mouseWorldPos.z = 0f;
-
-        return mouseWorldPos;
-    }
 }

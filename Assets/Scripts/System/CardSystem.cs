@@ -78,9 +78,23 @@ public class CardSystem : Singleton<CardSystem>
                 ActionSystem.Instance.AddAction(playCardGA.SummonMonsterGA);
                 break;
             case CardType.Action:
-                foreach (var targetEffect in playCardGA.Card.Effects)
+                foreach (var effect in playCardGA.Card.Effects)
                 {
-                    PerformEffectGA performEffectGA = new(targetEffect.effect, targetEffect.targetMode.GetTargets());
+                    PerformEffectGA performEffectGA;
+                    switch (effect.targetMode)
+                    {
+                        case TargetModeEnum.Auto:
+                            performEffectGA = new(effect.effect, effect.autoTarget.GetTargets());
+                            break;
+                        case TargetModeEnum.Manual:
+                            Card targetCard = await ManualTarget.Instance.ManualTargeting(Vector3.zero);
+                            performEffectGA = new PerformEffectGA(effect.effect, new List<Card> { targetCard });
+                            break;
+                        default:
+                            performEffectGA = new(effect.effect, null);
+                            break;
+                    }
+
                     ActionSystem.Instance.AddAction(performEffectGA);
                 }
 
@@ -136,7 +150,8 @@ public class CardSystem : Singleton<CardSystem>
         {
             case CardLocation.HandZone:
                 handZone.Add(card);
-                CardView cardView = CardViewCreator.Instance.CreateCardView(deckPosition.position, deckPosition.rotation, card);
+                CardView cardView =
+                    CardViewCreator.Instance.CreateCardView(deckPosition.position, deckPosition.rotation, card);
                 await handManager.AddHandCard(cardView);
                 break;
             case CardLocation.BattleZone:

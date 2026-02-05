@@ -1,4 +1,5 @@
 using System;
+using CardEnum;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Unity.Collections.LowLevel.Unsafe;
@@ -34,52 +35,69 @@ public class CardUIEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnBeginDrag(PointerEventData eventData)
     {
         Hide();
-        startPos = transform.position;
-        startRot = transform.rotation.eulerAngles;
-        startScale = transform.localScale;
-        _originalZ = transform.position.z;
+        if (cardView.Card.Location is CardLocation.HandZone)
+        {
+            startPos = transform.position;
+            startRot = transform.rotation.eulerAngles;
+            startScale = transform.localScale;
+            _originalZ = transform.position.z;
 
-        _zDistanceToCamera = Mathf.Abs(cam.transform.position.z - transform.position.z);
+            _zDistanceToCamera = Mathf.Abs(cam.transform.position.z - transform.position.z);
 
-        Vector3 mouseWorldPos = GetMouseWorldPosition(eventData.position);
-        _offset = transform.position - mouseWorldPos;
+            Vector3 mouseWorldPos = GetMouseWorldPosition(eventData.position);
+            _offset = transform.position - mouseWorldPos;
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, _originalZ + dragZOffset);
-        transform.rotation = Quaternion.Euler(Vector3.zero);
-        transform.localScale = Vector3.zero;
+            transform.position = new Vector3(transform.position.x, transform.position.y, _originalZ + dragZOffset);
+            transform.rotation = Quaternion.Euler(Vector3.zero);
+            transform.localScale = Vector3.zero;
 
-        col.enabled = false;
+            col.enabled = false;
+        }
+        else
+        {
+            ManualTarget.Instance.StartTargeting(transform.position);
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        Vector3 mouseWorldPos = GetMouseWorldPosition(eventData.position);
-        transform.position = mouseWorldPos + _offset;
+        if (cardView.Card.Location is CardLocation.HandZone)
+        {
+            Vector3 mouseWorldPos = GetMouseWorldPosition(eventData.position);
+            transform.position = mouseWorldPos + _offset;
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, _originalZ + dragZOffset);
+            transform.position = new Vector3(transform.position.x, transform.position.y, _originalZ + dragZOffset);
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         col.enabled = true;
 
-        Collider[] other = Physics.OverlapBox(transform.position, new Vector3(1, 1, 1));
-        foreach (var obj in other)
+        if (cardView.Card.Location is CardLocation.HandZone)
         {
-            // TODO add other cost
-            if (ManaSystem.Instance.EnoughMana(cardView.Card.Cost) && obj.TryGetComponent(out IDropArea dropArea))
+            Collider[] other = Physics.OverlapBox(transform.position, new Vector3(1, 1, 1));
+            foreach (var obj in other)
             {
-                if (dropArea.OnCardDrop(cardView))
+                // TODO add other cost
+                if (ManaSystem.Instance.EnoughMana(cardView.Card.Cost) && obj.TryGetComponent(out IDropArea dropArea))
                 {
-                    return;
+                    if (dropArea.OnCardDrop(cardView))
+                    {
+                        return;
+                    }
                 }
             }
-        }
 
-        float time = 0.2f;
-        transform.DORotate(startRot, time);
-        transform.DOMove(startPos, time);
-        transform.DOScale(startScale, time);
+            float time = 0.2f;
+            transform.DORotate(startRot, time);
+            transform.DOMove(startPos, time);
+            transform.DOScale(startScale, time);
+        }
+        else
+        {
+            ManualTarget.Instance.EndTargeting(transform.position);
+        }
     }
 
     // Helper to convert Screen Pixels (Input) to World 3D Coordinates

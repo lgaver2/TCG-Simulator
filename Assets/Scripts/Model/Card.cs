@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Alchemy.Inspector;
 using CardEnum;
@@ -11,7 +12,7 @@ public class Card
     public string Name => cardData.Name;
     public string Description => cardData.Description;
     public Sprite Sprite => cardData.Sprite;
-    public List<TargetEffect> Effects => cardData.Effects;
+    public List<EffectContainer> Effects => cardData.Effects;
     public CardType CardType => cardData.CardType;
 
     public Card(CardData cardData)
@@ -20,4 +21,13 @@ public class Card
         Cost = cardData.Cost;
         Location = CardLocation.HandZone;
     }
+    
+    // actions
+    public Action<Card> onUpdateUI;
+
+    public void UpdateUI()
+    {
+       onUpdateUI?.Invoke(this); 
+    }
+
 }
