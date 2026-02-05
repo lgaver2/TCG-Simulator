@@ -32,9 +32,17 @@ MonoBehaviour:
       data:
         effect:
           rid: 833443126503538784
-        targetMode:
+        targetMode: 1
+        autoTarget:
           rid: -2
-        isManualTarget: 1
+        manualTarget:
+          rid: 833443127916757078
     - rid: 833443126503538784
       type: {class: EffectShowMonster, ns: , asm: Assembly-CSharp}
       data: 
+    - rid: 833443127916757078
+      type: {class: TargetSpecification, ns: , asm: Assembly-CSharp}
+      data:
+        cardType: 01000000
+        cardLocation: 01000000
+        cardCost: []

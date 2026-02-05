@@ -25,17 +25,21 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 833443126503538779
       type: {class: EffectContainer, ns: , asm: Assembly-CSharp}
       data:
         effect:
           rid: 833443126503538781
-        targetMode:
-          rid: 833443126503538782
-        isManualTarget: 0
+        targetMode: 2
+        autoTarget:
+          rid: 833443127916757072
+        manualTarget:
+          rid: -2
     - rid: 833443126503538781
       type: {class: EffectShowMonster, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 833443126503538782
+    - rid: 833443127916757072
       type: {class: TargetAllBattelZone, ns: , asm: Assembly-CSharp}
       data: 

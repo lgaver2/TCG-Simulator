@@ -793,6 +793,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1033470962}
+  - {fileID: 2009594607}
   - {fileID: 889176650}
   - {fileID: 1450687951}
   - {fileID: 1134159769}
@@ -1740,6 +1741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d77bab60d2e1d5d2aa2fa936534855fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionDropArea
+  castLocation: {fileID: 2009594607}
 --- !u!1 &935761663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3063,7 +3065,39 @@ MonoBehaviour:
   handManager: {fileID: 1586870603}
   deckPosition: {fileID: 111129658}
   dropPosition: {fileID: 111129658}
+  castPosition: {fileID: 2009594607}
   cardData: {fileID: 11400000, guid: 33ab3bb4e21540c53b01110b4e434171, type: 2}
+--- !u!1 &2009594606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2009594607}
+  m_Layer: 0
+  m_Name: CastLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2009594607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009594606}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.21, y: -2.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 496992474}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2132694150
 GameObject:
   m_ObjectHideFlags: 0

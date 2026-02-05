@@ -11,13 +11,14 @@ public class CardSystem : Singleton<CardSystem>
     [SerializeField] HandManager handManager;
     [SerializeField] private Transform deckPosition;
     [SerializeField] private Transform dropPosition;
+    [SerializeField] private Transform castPosition;
     [SerializeField] private CardData cardData;
 
     private readonly List<Card> deck = new List<Card>();
     private readonly List<Card> handZone = new List<Card>();
     public List<Card> BattleZone { get; private set; } = new List<Card>();
-    public List<Card> FortressZone { get; set; } = new List<Card>();
-    private readonly List<Card> dropZone = new List<Card>();
+    public List<Card> FortressZone { get; private set; } = new List<Card>();
+    public List<Card> DropZone { get; private set; }= new List<Card>();
 
 
     private void OnEnable()
@@ -87,7 +88,7 @@ public class CardSystem : Singleton<CardSystem>
                             performEffectGA = new(effect.effect, effect.autoTarget.GetTargets());
                             break;
                         case TargetModeEnum.Manual:
-                            Card targetCard = await ManualTarget.Instance.ManualTargeting(Vector3.zero);
+                            Card targetCard = await ManualTarget.Instance.ManualTargeting(castPosition.position);
                             performEffectGA = new PerformEffectGA(effect.effect, new List<Card> { targetCard });
                             break;
                         default:
@@ -139,7 +140,7 @@ public class CardSystem : Singleton<CardSystem>
                 FortressZone.Remove(card);
                 break;
             case CardLocation.DropZone:
-                dropZone.Remove(card);
+                DropZone.Remove(card);
                 break;
             default:
                 Debug.Log("error zone not registerd");
@@ -161,7 +162,7 @@ public class CardSystem : Singleton<CardSystem>
                 FortressZone.Add(card);
                 break;
             case CardLocation.DropZone:
-                dropZone.Add(card);
+                DropZone.Add(card);
                 break;
             default:
                 Debug.Log("error zone not registerd");

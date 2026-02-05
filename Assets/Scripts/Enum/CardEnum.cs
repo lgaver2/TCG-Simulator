@@ -29,4 +29,12 @@ namespace  CardEnum
         Manual,
         Auto
     }
+
+    public enum EqualityType
+    {
+        Equal,
+        NotEqual,
+        Less,
+        Big
+    }
 }
