@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using CardEnum;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
@@ -9,11 +10,14 @@ public class CardSystem : Singleton<CardSystem>
 {
    [SerializeField] HandManager handManager;
    [SerializeField] private Transform deckPosition;
-   [SerializeField] private Transform trashPosition;
+   [SerializeField] private Transform dropPosition;
    [SerializeField] private CardData cardData;
+   
    private readonly List<Card> deck = new List<Card>();
-   private readonly List<Card> hand = new List<Card>();
-   private readonly List<Card> trash = new List<Card>();
+   private readonly List<Card> handZone = new List<Card>();
+   private readonly List<Card> battleZone = new List<Card>();
+   private readonly List<Card> fortressZone = new List<Card>();
+   private readonly List<Card> dropZone = new List<Card>();
 
 
    private void OnEnable()
@@ -34,7 +38,22 @@ public class CardSystem : Singleton<CardSystem>
    {
       foreach (var cardData in deckList)
       {
-         deck.Add(new Card(cardData));
+         deck.Add(CardFactory(cardData));
+      }
+   }
+
+   private Card CardFactory(CardData cardData)
+   {
+      switch (cardData.CardType)
+      {
+         case CardType.Monster:
+            return new CardMonster(cardData);
+         case CardType.Action:
+            return new CardAction(cardData);
+         case CardType.Royal:
+            return new CardRoyal(cardData);
+         default:
+            return new  Card(cardData);
       }
    }
 
@@ -49,14 +68,14 @@ public class CardSystem : Singleton<CardSystem>
 
    private async UniTask PlayCardPerformer(PlayCardGA playCardGA)
    {
-      hand.Remove(playCardGA.Card);
+      handZone.Remove(playCardGA.Card);
       CardView cardView = handManager.RemoveCard(playCardGA.Card);
       SpendManaGA spendManaGA = new SpendManaGA(playCardGA.Card.Cost);
       ActionSystem.Instance.AddAction(spendManaGA);
       await DiscardCard(cardView);
       foreach (var effect in playCardGA.Card.Effects)
       {
-         PerformEffectGA performEffectGA = new(effect);
+         PerformEffectGA performEffectGA = new(effect, null);
          ActionSystem.Instance.AddAction(performEffectGA);
       }
    }
@@ -75,7 +94,7 @@ public class CardSystem : Singleton<CardSystem>
       Card card = deck.Draw();
       if (card == null)
          return;
-      hand.Add(card);
+      handZone.Add(card);
       CardView cardView = CardViewCreator.Instance.CreateCardView(deckPosition.position, deckPosition.rotation, card);
       await handManager.AddHandCard(cardView);
    }
@@ -84,7 +103,51 @@ public class CardSystem : Singleton<CardSystem>
    {
       // move to trash
       var token = this.GetCancellationTokenOnDestroy();
-      await cardView.transform.DOMove(trashPosition.position, 0.5f).ToUniTask(cancellationToken:token);
+      await cardView.transform.DOMove(dropPosition.position, 0.5f).ToUniTask(cancellationToken:token);
       Destroy(cardView.gameObject);
+   }
+
+   public void MoveCardLocation(Card card, CardLocation newLocation)
+   {
+      CardLocation oldLocation = card.Location;
+      card.Location = newLocation;
+      switch (oldLocation)
+      {
+        case CardLocation.HandZone:
+           handManager.RemoveCard(card);
+           handZone.Remove(card);
+           break;
+        case CardLocation.BattleZone:
+           battleZone.Remove(card);
+           break;
+        case CardLocation.FortressZone:
+           fortressZone.Remove(card);
+           break;
+        case CardLocation.DropZone:
+           dropZone.Remove(card);
+           break;
+        default:
+           Debug.Log("error zone not registerd");
+           break;
+      }
+      
+      switch (newLocation)
+      {
+        case CardLocation.HandZone:
+           handZone.Add(card);
+           break;
+        case CardLocation.BattleZone:
+           battleZone.Add(card);
+           break;
+        case CardLocation.FortressZone:
+           fortressZone.Add(card);
+           break;
+        case CardLocation.DropZone:
+           dropZone.Add(card);
+           break;
+        default:
+           Debug.Log("error zone not registerd");
+           break;
+      }
    }
 }

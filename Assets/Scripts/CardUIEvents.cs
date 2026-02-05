@@ -66,11 +66,13 @@ public class CardUIEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         Collider[] other = Physics.OverlapBox(transform.position, new Vector3(1, 1, 1));
         foreach (var obj in other)
         {
+            // TODO add other cost
             if (ManaSystem.Instance.EnoughMana(cardView.GetCard().Cost) && obj.TryGetComponent(out IDropArea dropArea))
             {
-                PlayCardGA playCardGA = new(cardView.GetCard());
-                ActionSystem.Instance.Perform(playCardGA).Forget();
-                return;
+                if (dropArea.OnCardDrop(cardView))
+                {
+                    return;
+                }
             }
         }
 

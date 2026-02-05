@@ -1,4 +1,5 @@
 using Alchemy.Inspector;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class TestSystem : MonoBehaviour
@@ -10,6 +11,6 @@ public class TestSystem : MonoBehaviour
    public void DrawCard()
    {
       CardView cardView = CardViewCreator.Instance.CreateCardView(transform.position, transform.rotation, new Card(cardData));
-      handManager.AddHandCard(cardView);
+      handManager.AddHandCard(cardView).Forget();
    }
 }

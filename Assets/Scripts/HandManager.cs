@@ -29,6 +29,7 @@ public class HandManager : MonoBehaviour
    public async UniTask AddHandCard(CardView card)
    {
       handCards.Add(card);
+      await UniTask.Delay(TimeSpan.FromSeconds(0.1f));
       UpdateCardPosition();
    }
 
@@ -41,7 +42,7 @@ public class HandManager : MonoBehaviour
       return cardView;
    }
 
-   public CardView GetCardView(Card card)
+   private CardView GetCardView(Card card)
    {
       return handCards.Where(cardView => cardView.card == card).First();
    }

@@ -10,6 +10,6 @@ public class MatchupSystem : MonoBehaviour
    {
       CardSystem.Instance.Setup(deckList);
       DrawCardGA drawCardGA = new(5);
-      ActionSystem.Instance.Perform(drawCardGA);
+      ActionSystem.Instance.Perform(drawCardGA).Forget();
    }
 }

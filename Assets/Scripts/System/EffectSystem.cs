@@ -17,7 +17,8 @@ public class EffectSystem : MonoBehaviour
     // performers
     public async UniTask PerformEffectPerformer(PerformEffectGA performEffectGA)
     {
-        GameAction effectAction = performEffectGA.Effect.GetGameAction();
+        // TODO add the targets
+        GameAction effectAction = performEffectGA.Effect.GetGameAction(null);
         ActionSystem.Instance.AddAction(effectAction);
     }
 }

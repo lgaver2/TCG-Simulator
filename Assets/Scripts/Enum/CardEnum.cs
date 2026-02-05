@@ -1,0 +1,25 @@
+using UnityEngine;
+
+namespace  CardEnum
+{
+    public enum CardType
+    {
+        Royal,
+        Monster,
+        Action
+    }
+
+    public enum CardLocation
+    {
+        HandZone,
+        BattleZone,
+        FortressZone,
+        DropZone
+    }
+
+    public enum TargetType
+    {
+        Player,
+        Monster,
+    }
+}
