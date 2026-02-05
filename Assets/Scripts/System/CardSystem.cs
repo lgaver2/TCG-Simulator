@@ -15,8 +15,8 @@ public class CardSystem : Singleton<CardSystem>
    
    private readonly List<Card> deck = new List<Card>();
    private readonly List<Card> handZone = new List<Card>();
-   private readonly List<Card> battleZone = new List<Card>();
-   private readonly List<Card> fortressZone = new List<Card>();
+   public List<Card> BattleZone { get; private set; }= new List<Card>();
+   public List<Card> FortressZone { get; set; }= new List<Card>();
    private readonly List<Card> dropZone = new List<Card>();
 
 
@@ -73,9 +73,9 @@ public class CardSystem : Singleton<CardSystem>
       SpendManaGA spendManaGA = new SpendManaGA(playCardGA.Card.Cost);
       ActionSystem.Instance.AddAction(spendManaGA);
       await DiscardCard(cardView);
-      foreach (var effect in playCardGA.Card.Effects)
+      foreach (var targetEffect in playCardGA.Card.Effects)
       {
-         PerformEffectGA performEffectGA = new(effect, null);
+         PerformEffectGA performEffectGA = new(targetEffect.effect, targetEffect.targetMode.GetTargets());
          ActionSystem.Instance.AddAction(performEffectGA);
       }
    }
@@ -118,10 +118,10 @@ public class CardSystem : Singleton<CardSystem>
            handZone.Remove(card);
            break;
         case CardLocation.BattleZone:
-           battleZone.Remove(card);
+           BattleZone.Remove(card);
            break;
         case CardLocation.FortressZone:
-           fortressZone.Remove(card);
+           FortressZone.Remove(card);
            break;
         case CardLocation.DropZone:
            dropZone.Remove(card);
@@ -137,10 +137,10 @@ public class CardSystem : Singleton<CardSystem>
            handZone.Add(card);
            break;
         case CardLocation.BattleZone:
-           battleZone.Add(card);
+           BattleZone.Add(card);
            break;
         case CardLocation.FortressZone:
-           fortressZone.Add(card);
+           FortressZone.Add(card);
            break;
         case CardLocation.DropZone:
            dropZone.Add(card);

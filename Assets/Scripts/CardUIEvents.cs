@@ -67,7 +67,7 @@ public class CardUIEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         foreach (var obj in other)
         {
             // TODO add other cost
-            if (ManaSystem.Instance.EnoughMana(cardView.GetCard().Cost) && obj.TryGetComponent(out IDropArea dropArea))
+            if (ManaSystem.Instance.EnoughMana(cardView.Card.Cost) && obj.TryGetComponent(out IDropArea dropArea))
             {
                 if (dropArea.OnCardDrop(cardView))
                 {
@@ -105,7 +105,7 @@ public class CardUIEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         //cardView.GetWrapper().SetActive(false);
         transform.localScale = new(1.2f, 1.2f, 1.2f);
-        CardViewHoverSystem.Instance.Show(cardView.GetCard());
+        CardViewHoverSystem.Instance.Show(cardView.Card);
     }
 
     private void Hide()

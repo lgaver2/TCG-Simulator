@@ -31,12 +31,14 @@ public class ManaSystem : Singleton<ManaSystem>
     {
         currentMana -= spendManaGA.Amount;
         manaUI.UpdateManaText(currentMana);
+        await UniTask.Yield();
     }
 
     private async UniTask RefillManaPerformer(RefillManaGA spendManaGA)
     {
         currentMana = MAX_MANA;
         manaUI.UpdateManaText(currentMana);
+        await UniTask.Yield();
     }
 
 

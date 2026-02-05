@@ -20,5 +20,6 @@ public class EffectSystem : MonoBehaviour
         // TODO add the targets
         GameAction effectAction = performEffectGA.Effect.GetGameAction(null);
         ActionSystem.Instance.AddAction(effectAction);
+        await UniTask.Yield();
     }
 }

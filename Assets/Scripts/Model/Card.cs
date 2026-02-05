@@ -11,7 +11,7 @@ public class Card
     public string Name => cardData.Name;
     public string Description => cardData.Description;
     public Sprite Sprite => cardData.Sprite;
-    public List<Effect> Effects => cardData.Effects;
+    public List<TargetEffect> Effects => cardData.Effects;
     public CardType CardType => cardData.CardType;
 
     public Card(CardData cardData)

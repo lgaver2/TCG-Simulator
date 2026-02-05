@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Effect
 {
-    public GameAction GetGameAction(List<CardView> targets);
+    public GameAction GetGameAction(List<Card> targets);
 }

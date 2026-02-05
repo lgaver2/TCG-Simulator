@@ -44,7 +44,7 @@ public class HandManager : MonoBehaviour
 
    private CardView GetCardView(Card card)
    {
-      return handCards.Where(cardView => cardView.card == card).First();
+      return handCards.Where(cardView => cardView.Card == card).First();
    }
    
    private void UpdateCardPosition()

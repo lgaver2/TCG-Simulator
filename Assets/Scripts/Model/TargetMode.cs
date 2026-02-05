@@ -3,6 +3,6 @@ using UnityEngine;
 
 public abstract class TargetMode
 {
-   public abstract List<CardView> GetTargets();
+   public abstract List<Card> GetTargets();
    
 }

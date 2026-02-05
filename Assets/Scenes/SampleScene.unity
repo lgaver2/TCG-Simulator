@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FieldDropArea
   location: 1
+  zoneIndex: 0
 --- !u!212 &136354377
 SpriteRenderer:
   serializedVersion: 2
@@ -1132,6 +1133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FieldDropArea
   location: 1
+  zoneIndex: 2
 --- !u!212 &721661895
 SpriteRenderer:
   serializedVersion: 2
@@ -2566,6 +2568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FieldDropArea
   location: 1
+  zoneIndex: 1
 --- !u!212 &1830177888
 SpriteRenderer:
   serializedVersion: 2

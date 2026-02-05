@@ -24,12 +24,13 @@ public class CardView : MonoBehaviour
     [SerializeField] private TMP_Text defense;
     [SerializeField] private TMP_Text strike;
 
-    public Card card { get; private set; }
+    public Card Card { get; private set; }
+    public bool canMove { get; set; } = true;
 
 
     public void SetCard(Card card)
     {
-        this.card = card;
+        this.Card = card;
         cardImage.sprite = card.Sprite;
         cardName.text = card.Name;
         cardCost.text = card.Cost.ToString();
@@ -50,10 +51,4 @@ public class CardView : MonoBehaviour
     {
         return wrapper;
     }
-    
-    public Card GetCard()
-    {
-        return card;
-    }
-    
 }
