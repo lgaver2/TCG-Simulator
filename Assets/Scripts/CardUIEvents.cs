@@ -80,7 +80,7 @@ public class CardUIEvents : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             foreach (var obj in other)
             {
                 // TODO add other cost
-                if (ManaSystem.Instance.EnoughMana(cardView.Card.Cost) && obj.TryGetComponent(out IDropArea dropArea))
+                if (obj.TryGetComponent(out DropArea dropArea))
                 {
                     if (dropArea.OnCardDrop(cardView))
                     {
