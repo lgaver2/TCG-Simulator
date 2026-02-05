@@ -10,32 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d82a6c9e9104071b9c868bc96e66468, type: 3}
-  m_Name: Goyoku
+  m_Name: Show
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   Sprite: {fileID: 0}
-  Name: Goyoku
-  Cost: 1
-  Description: Draw two cards
+  Name: Show
+  Cost: 0
+  Description: 
   AttackPoint: 0
   DefensePoint: 0
   StrikePoint: 0
   CardType: 2
   Effects:
-  - rid: 833443121980768501
+  - rid: 833443121980768507
   references:
     version: 2
     RefIds:
-    - rid: 833443121980768501
+    - rid: 833443121980768507
       type: {class: TargetEffect, ns: , asm: Assembly-CSharp}
       data:
         effect:
-          rid: 833443121980768503
+          rid: 833443121980768510
         targetMode:
-          rid: 833443121980768504
-    - rid: 833443121980768503
-      type: {class: EffectDraw, ns: , asm: Assembly-CSharp}
-      data:
-        drawAmount: 2
-    - rid: 833443121980768504
-      type: {class: NoTM, ns: , asm: Assembly-CSharp}
+          rid: 833443121980768508
+    - rid: 833443121980768508
+      type: {class: TargetAllBattelZone, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 833443121980768510
+      type: {class: EffectShowMonster, ns: , asm: Assembly-CSharp}
       data: 

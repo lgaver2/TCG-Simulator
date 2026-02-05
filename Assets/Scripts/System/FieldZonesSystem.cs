@@ -24,7 +24,7 @@ public class FieldZonesSystem : Singleton<FieldZonesSystem>
         CardView card = summonMonsterGA.SummonedCard;
         CardLocation location = summonMonsterGA.SummonedCardLocation;
         int zoneIndex = summonMonsterGA.ZoneIndex;
-        CardSystem.Instance.MoveCardLocation(card.Card, location);
+        CardSystem.Instance.MoveCardLocation(card.Card, Vector3.zero, location).Forget();
 
         // effect (ETB)
         switch (location)

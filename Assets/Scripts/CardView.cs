@@ -46,9 +46,4 @@ public class CardView : MonoBehaviour
             strike.text = monsterCard.StrikePoint.ToString();
         }
     }
-
-    public GameObject GetWrapper()
-    {
-        return wrapper;
-    }
 }

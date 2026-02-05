@@ -17,7 +17,8 @@ public class FieldDropArea : MonoBehaviour, IDropArea
             droppedCard.Location is not CardLocation.BattleZone or CardLocation.FortressZone)
         {
             SummonMonsterGA summonMonsterGA = new SummonMonsterGA(cardView, location, zoneIndex);
-            ActionSystem.Instance.Perform(summonMonsterGA).Forget();
+            PlayCardGA playCardGA = new (cardView.Card, summonMonsterGA);
+            ActionSystem.Instance.Perform(playCardGA).Forget();
             cardView.transform.position = transform.position;
             return true;
         }

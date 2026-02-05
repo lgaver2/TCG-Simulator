@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CardData
   Sprite: {fileID: 21300000, guid: 2cb10ef59ca36d8c1961fa5221e183d4, type: 3}
   Name: Goblin
-  Cost: 0
+  Cost: 1
   Description: A simple Goblin
   AttackPoint: 1
   DefensePoint: 1
